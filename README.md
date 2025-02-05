@@ -1,48 +1,112 @@
-# RunSphere
+# RunSphere - Marathon Management System
 
-Welcome to **RunSphere** – your ultimate Marathon Management System! This platform makes organizing and participating in marathon events easier than ever. Whether you're an event organizer or a runner, RunSphere offers a streamlined way to manage and explore marathons.
+RunSphere is a modern Marathon Management System built with the MERN stack (MongoDB, Express, React, and Node.js). It provides an intuitive platform for both event organizers and participants to create, manage, and join marathons seamlessly.
 
-## 🌐 Live Site
-[RunSphere - Marathon Management System](https://runsphere.netlify.app/)  
-
----
-
-## 📖 Overview
-RunSphere helps connect marathon organizers with participants. It simplifies creating, managing, and joining marathons while providing a personalized dashboard for all users.
+## 🌍 Live Project
+[🔗 Visit RunSphere](https://runsphere.netlify.app/)
 
 ---
 
-## 🚀 Key Features
+## 🚀 Technologies Used
 
-### 1️⃣ **Create and Manage Events**
-Event organizers can effortlessly create marathons with all essential details like dates, location, and distance. Organizers can also update or delete events if needed.
-
-### 2️⃣ **Explore Marathons**
-Participants can browse through available marathons with ease. Each marathon card displays vital details like the title, location, and registration dates. A "See Details" button provides in-depth information about each event.
-
-### 3️⃣ **User-Friendly Registration**
-Signing up for marathons is simple and intuitive. Users can fill out a quick registration form, and the system ensures all applications are seamlessly recorded.
-
-### 4️⃣ **Personalized Dashboard**
-Both organizers and participants have their own dashboards. Organizers can view, update, or delete their created events, while participants can manage their registrations.
-
-### 5️⃣ **Dynamic and Responsive Design**
-RunSphere is designed to provide a seamless experience across all devices – whether you're on a desktop, tablet, or mobile phone. The platform also includes meaningful notifications and a dynamic website title for every route.
-
----
-
-## 📋 Project Features at a Glance
-- **Dynamic Navbar:** Changes based on login status.
-- **Responsive Design:** Optimized for mobile, tablet, and desktop views.
-- **Secure Access:** Private routes ensure secure user navigation.
-- **Real-Time Updates:** Reflects changes immediately upon interaction.
-- **Environment Variables:** Sensitive keys are securely stored.
-
----
-
-## 🛠️ Technologies Used
-- **Frontend:** React, Tailwind CSS, react-router-dom
-- **Backend:** Node.js, Express.js
-- **Database:** MongoDB
+- **Frontend:** React.js, Tailwind CSS, React Router
+- **Backend:** Node.js, Express.js, MongoDB
 - **Authentication:** Firebase Authentication
-- **Deployment:** Netlify (Frontend) and Vercel (Backend)
+- **State Management & Utilities:** LocalForage, Axios
+- **Alerts & UI Enhancements:** SweetAlert2, React Icons
+- **Build & Development Tools:** Vite, ESLint, PostCSS, Autoprefixer
+
+---
+
+## 🔥 Features
+
+### 🖥️ Fully Responsive Design
+- Optimized for mobile, tablet, and desktop views with an intuitive user experience.
+
+### 🏃 Marathon Event Management
+- Organizers can create, update, and delete marathon events with details like location, date, and distance.
+- Events are dynamically listed with all necessary information.
+
+### 🔎 Explore Marathons
+- Participants can browse available marathons with a user-friendly interface.
+- Each marathon displays location, title, and registration details.
+- "See Details" button provides an in-depth event view.
+
+### 🏅 User-Friendly Registration
+- Simple and intuitive sign-up for marathons.
+- All registrations are securely recorded and managed.
+
+### 📊 User & Organizer Dashboard
+#### **Participant Panel**
+- View registered marathons.
+- Manage registrations and personal event details.
+
+#### **Organizer Panel**
+- Manage created marathons.
+- View participant lists and event analytics.
+
+### 🔐 Secure Authentication System
+- Email/password login and Google Sign-in.
+- Firebase Authentication ensures a secure login experience.
+
+### 🔍 Server-Side Search
+- Quick lookup for specific marathon events and participants.
+
+### 🔔 SweetAlert Notifications
+- Smooth UI feedback for login, sign-up, and CRUD operations.
+
+---
+
+## 🛠 How to Run the Project Locally
+
+### 1️⃣ Prerequisites
+Ensure you have the following installed on your system:
+- **Node.js** (latest LTS recommended)
+- **NPM or Yarn**
+- **Git** (optional, but recommended)
+
+### 2️⃣ Clone the Repository
+```sh
+git clone https://github.com/yourusername/runsphere.git
+cd runsphere
+```
+
+### 3️⃣ Install Dependencies
+```sh
+npm install
+# or
+yarn install
+```
+
+### 4️⃣ Start the Development Server
+```sh
+npm run dev
+# or
+yarn dev
+```
+The application should now be running on `http://localhost:5173/`.
+
+### 5️⃣ Build for Production
+```sh
+npm run build
+# or
+yarn build
+```
+
+---
+
+## 🔑 Environment Variables
+
+Before running the project, create a `.env` file in the root directory and add the following variables:
+
+```env
+VITE_apiKey=YOUR_FIREBASE_API_KEY
+VITE_authDomain=YOUR_FIREBASE_AUTH_DOMAIN
+VITE_projectId=YOUR_FIREBASE_PROJECT_ID
+VITE_storageBucket=YOUR_FIREBASE_STORAGE_BUCKET
+VITE_messagingSenderId=YOUR_FIREBASE_MESSAGING_SENDER_ID
+VITE_appId=YOUR_FIREBASE_APP_ID
+```
+
+![Project Screenshot](https://raw.githubusercontent.com/pritom-roy/runsphere/main/runsphere.png)
+
