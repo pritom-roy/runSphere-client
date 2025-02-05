@@ -108,5 +108,5 @@ VITE_messagingSenderId=YOUR_FIREBASE_MESSAGING_SENDER_ID
 VITE_appId=YOUR_FIREBASE_APP_ID
 ```
 
-![Project Screenshot](https://raw.githubusercontent.com/pritom-roy/runsphere/main/runsphere.png)
+![Project Screenshot](https://raw.githubusercontent.com/pritom-roy/runSphere-client/main/runsphere.png)
 
