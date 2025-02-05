@@ -9,7 +9,7 @@ RunSphere is a modern Marathon Management System built with the MERN stack (Mong
 
 ## 🚀 Technologies Used
 
-- **Frontend:** React.js, Tailwind CSS, React Router
+- **Frontend:** React.js, Tailwind CSS
 - **Backend:** Node.js, Express.js, MongoDB
 - **Authentication:** Firebase Authentication
 - **State Management & Utilities:** LocalForage, Axios
