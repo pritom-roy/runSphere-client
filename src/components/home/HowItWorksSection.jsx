@@ -33,7 +33,7 @@ const HowItWorksSection = () => {
                 <div className="grid grid-cols-1 md:grid-cols-4 gap-8 font-Body">
                     {steps.map((step, index) => (
                         <div key={index} className="text-center">
-                            <div className="flex justify-center items-center w-16 h-16 bg-purple-500 text-white rounded-full mx-auto mb-4">
+                            <div className="flex justify-center items-center w-16 h-16 bg-Primary text-white rounded-full mx-auto mb-4">
                                 {step.icon}
                             </div>
                             <h3 className="text-lg font-bold text-gray-800 mb-2">
