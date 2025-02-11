@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import axios from "axios";
 import { Link } from "react-router-dom";
 import { CountdownCircleTimer } from "react-countdown-circle-timer";
+import Loading from "../components/Loading";
 
 const Marathons = () => {
     useEffect(() => {
@@ -27,11 +28,11 @@ const Marathons = () => {
     const calculateTimeRemaining = (startDate) => {
         const currentDate = new Date();
         const marathonDate = new Date(startDate);
-        return (marathonDate - currentDate) / 1000; // Convert milliseconds to seconds
+        return (marathonDate - currentDate) / 1000;
     };
 
     if (loading) {
-        return <div className="text-center text-2xl font-Body mt-10">Loading...</div>;
+        return <Loading />;
     }
 
     return (

@@ -41,7 +41,7 @@ const MyMarathons = () => {
         }).then((result) => {
             if (result.isConfirmed) {
                 axios
-                    .delete(`https://run-sphere-server.vercel.app/applications/${id}`, { withCredentials: true })
+                    .delete(`https://run-sphere-server.vercel.app/marathons/${id}`, { withCredentials: true })
                     .then(() => {
                         setApplications(applications.filter((app) => app._id !== id));
                         Swal.fire("Deleted!", "Your application has been deleted.", "success");
