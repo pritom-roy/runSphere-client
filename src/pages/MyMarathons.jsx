@@ -144,7 +144,7 @@ const MyMarathons = () => {
     // "creatorPhoto": "https://i.ibb.co.com/vqhx6hx/yoyo.jpg"
 
     return (
-        <div className="">
+        <div className="w-11/12 md:w-10/12 mx-auto">
             <h1 className="text-2xl mb-4 text-Primary text-center font-Heading">My Marathons</h1>
 
             <div className="hidden lg:block mb-8">

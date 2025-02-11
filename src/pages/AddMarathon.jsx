@@ -84,7 +84,7 @@ const AddMarathon = () => {
     };
 
     return (
-        <div className="bg-Background p-8 rounded-2xl mb-6 shadow-lg max-w-4xl mx-auto my-2">
+        <div className="w-11/12 md:w-10/12 bg-Background p-8 rounded-xl md:rounded-2xl mb-6 shadow-lg max-w-4xl mx-auto my-2">
             <h1 className="text-3xl font-Heading text-Primary text-center mb-4">
                 Create a Marathon Event
             </h1>
@@ -208,7 +208,7 @@ const AddMarathon = () => {
                 <div className="text-center">
                     <button
                         type="submit"
-                        className="px-6 py-2 bg-Primary text-Secondary hover:bg-Secondary font-semibold hover:text-white font-body rounded-md transition"
+                        className="px-6 py-2 bg-Primary text-white hover:bg-Secondary font-semibold hover:text-white font-body rounded-md transition"
                     >
                         Create Marathon
                     </button>
