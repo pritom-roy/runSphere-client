@@ -36,9 +36,9 @@ const FAQ = () => {
     };
 
     return (
-        <div className="bg-run2 md:bg-faq bg-cover flex flex-col items-center py-12 px-6 lg:px-20">
+        <div className="bg-run2 lg:bg-faq bg-cover flex flex-col items-center py-12 px-6 lg:px-20">
             <h1 className="text-3xl font-bold text-Primary mb-6">Frequently Asked Questions</h1>
-            <div className="w-full max-w-2xl bg-white/80 p-6 rounded-lg shadow-md">
+            <div className="w-full max-w-2xl bg-white/85 p-6 rounded-lg shadow-md">
                 {faqs.map((faq, index) => (
                     <div key={index} className="mb-4 border-b border-gray-300 pb-2">
                         <button

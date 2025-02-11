@@ -42,9 +42,6 @@ const Navbar = () => {
                             <Link
                                 to="marathons"
                                 className="w-full hover:border border-Secondary text-Secondary rounded-md p-1">Marathon</Link>
-                            <Link
-                                to="marathons"
-                                className="w-full hover:border border-Secondary text-Secondary rounded-md p-1">Contact Us</Link>
                             {user?.email ? <Link
                                 to="dashboard"
                                 className="w-full hover:border border-Secondary text-Secondary rounded-md p-1">Dashboard</Link> : <></>}
@@ -57,6 +54,12 @@ const Navbar = () => {
                             {user?.email ? <Link
                                 to="dashboard/myapply"
                                 className="w-full hover:border border-Secondary text-Secondary rounded-md p-1">My Apply List</Link> : <></>}
+                            <Link
+                                to="contact"
+                                className="w-full hover:border border-Secondary text-Secondary rounded-md p-1">Contact Us</Link>
+                            <Link
+                                to="faq"
+                                className="w-full hover:border border-Secondary text-Secondary rounded-md p-1">FAQ</Link>
                         </ul>
                     </div>
                     <Link to="/" className="text-xl group">
@@ -67,13 +70,13 @@ const Navbar = () => {
                 </div>
 
                 <div className="navbar-end w-auto md:gap-10">
-                    <ul className="menu menu-horizontal px-1 hidden md:flex">
+                    <ul className="menu menu-horizontal px-1 hidden lg:flex">
                         <Link to="/marathons" className="hover:text-Primary">MARATHON</Link>
-                        {user?.email && <Link to="/contact" className="hover:text-Primary pl-4 uppercase">CONTACT US</Link>}
                         {user?.email && <Link to="/dashboard" className="hover:text-Primary pl-4 uppercase">DASHBOARD</Link>}
-                        {user?.email && <Link to="/dashboard/addmarathon" className="hover:text-Primary pl-4 uppercase">Add Marathon</Link>}
                         {user?.email && <Link to="/dashboard/mymarathon" className="hover:text-Primary pl-4 uppercase">My Marathon</Link>}
                         {user?.email && <Link to="/dashboard/myapply" className="hover:text-Primary pl-4 uppercase">My Apply List</Link>}
+                        <Link to="/faq" className="hover:text-Primary pl-4 uppercase">FAQ</Link>
+                        <Link to="/contact" className="hover:text-Primary pl-4 uppercase">CONTACT US</Link>
                     </ul>
 
                     {
