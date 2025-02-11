@@ -4,6 +4,7 @@ import Swal from "sweetalert2";
 import axios from "axios";
 import { AuthContext } from "../context/AuthContext";
 import DatePicker from "react-datepicker";
+import Loading from "../components/Loading";
 
 const MyMarathons = () => {
     useEffect(() => {
@@ -19,13 +20,16 @@ const MyMarathons = () => {
 
     const [trackStart, settrackStart] = useState(null);
     const [trackEnd, settrackEnd] = useState(null);
+    const [loading, setLoading] = useState(false);
 
     useEffect(() => {
         if (user?.email) {
+            setLoading(true);
             axios
                 .get(`https://run-sphere-server.vercel.app/marathons?email=${user.email}`, { withCredentials: true })
                 .then((response) => setApplications(response.data))
-                .catch((error) => console.error("Error fetching applications:", error));
+                .catch((error) => console.error("Error fetching applications:", error))
+                .finally(() => setLoading(false));
         }
     }, [user]);
 
@@ -147,31 +151,80 @@ const MyMarathons = () => {
         <div className="w-11/12 md:w-10/12 mx-auto">
             <h1 className="text-2xl mb-4 text-Primary text-center font-Heading">My Marathons</h1>
 
-            <div className="hidden lg:block mb-8">
-                <table className="table-auto w-full border-collapse border border-gray-300">
-                    <thead>
-                        <tr>
-                            <th className="border border-gray-300 px-4 py-2">Marathon Title</th>
-                            <th className="border border-gray-300 px-4 py-2">Location</th>
-                            <th className="border border-gray-300 px-4 py-2">Start Date</th>
-                            <th className="border border-gray-300 px-4 py-2">End Date</th>
-                            <th className="border border-gray-300 px-4 py-2">Start Run</th>
-                            <th className="border border-gray-300 px-4 py-2">Distance</th>
-                            <th className="border border-gray-300 px-4 py-2">Image</th>
-                            <th className="border border-gray-300 px-4 py-2">Action</th>
-                        </tr>
-                    </thead>
-                    <tbody>
+            {loading ? (
+                <Loading />
+            ) : (
+                <>
+                    <div className="hidden lg:block mb-8">
+                        <table className="table-auto w-full border-collapse border border-gray-300">
+                            <thead>
+                                <tr>
+                                    <th className="border border-gray-300 px-4 py-2">Marathon Title</th>
+                                    <th className="border border-gray-300 px-4 py-2">Location</th>
+                                    <th className="border border-gray-300 px-4 py-2">Start Date</th>
+                                    <th className="border border-gray-300 px-4 py-2">End Date</th>
+                                    <th className="border border-gray-300 px-4 py-2">Start Run</th>
+                                    <th className="border border-gray-300 px-4 py-2">Distance</th>
+                                    <th className="border border-gray-300 px-4 py-2">Image</th>
+                                    <th className="border border-gray-300 px-4 py-2">Action</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {applications.map((app) => (
+                                    <tr key={app._id}>
+                                        <td className="border border-gray-300 px-4 py-2">{app.marathonTitle}</td>
+                                        <td className="border border-gray-300 px-4 py-2">{app.location}</td>
+                                        <td className="border border-gray-300 px-4 py-2">{app.startRegistration}</td>
+                                        <td className="border border-gray-300 px-4 py-2">{app.endRegistration}</td>
+                                        <td className="border border-gray-300 px-4 py-2">{app.marathonStartDate}</td>
+                                        <td className="border border-gray-300 px-4 py-2">{app.runningDistance}</td>
+                                        <td className="border border-gray-300 px-4 py-2">{app.marathonImage}</td>
+                                        <td className="border border-gray-300 px-4 py-2 flex gap-2">
+                                            <button
+                                                className="btn w-full flex-1 bg-Primary text-white py-2 rounded-md hover:bg-Secondary hover:text-Primary transition"
+                                                onClick={() => handleUpdate(app)}
+                                            >
+                                                Update
+                                            </button>
+                                            <button
+                                                className="btn w-full flex-1 hover:bg-Secondary hover:text-white"
+                                                onClick={() => handleDelete(app._id)}
+                                            >
+                                                Delete
+                                            </button>
+                                        </td>
+                                    </tr>
+                                ))}
+                            </tbody>
+                        </table>
+                    </div>
+
+                    <div className="block lg:hidden">
                         {applications.map((app) => (
-                            <tr key={app._id}>
-                                <td className="border border-gray-300 px-4 py-2">{app.marathonTitle}</td>
-                                <td className="border border-gray-300 px-4 py-2">{app.location}</td>
-                                <td className="border border-gray-300 px-4 py-2">{app.startRegistration}</td>
-                                <td className="border border-gray-300 px-4 py-2">{app.endRegistration}</td>
-                                <td className="border border-gray-300 px-4 py-2">{app.marathonStartDate}</td>
-                                <td className="border border-gray-300 px-4 py-2">{app.runningDistance}</td>
-                                <td className="border border-gray-300 px-4 py-2">{app.marathonImage}</td>
-                                <td className="border border-gray-300 px-4 py-2 flex gap-2">
+                            <div
+                                key={app._id}
+                                className="border border-gray-300 rounded-lg p-4 shadow-md mb-4"
+                            >
+                                <h2 className="text-lg font-semibold mb-2">{app.marathonTitle}</h2>
+                                <p>
+                                    <span className="font-medium">Location: </span> {app.location}
+                                </p>
+                                <p>
+                                    <span className="font-medium">Start Date: </span> {app.startRegistration}
+                                </p>
+                                <p>
+                                    <span className="font-medium">End Date: </span> {app.endRegistration}
+                                </p>
+                                <p>
+                                    <span className="font-medium">Run Start: </span> {app.marathonStartDate}
+                                </p>
+                                <p>
+                                    <span className="font-medium">Distance: </span> {app.runningDistance}
+                                </p>
+                                <p>
+                                    <span className="font-medium">Image: </span> {app.marathonImage}
+                                </p>
+                                <div className="mt-4 flex gap-2">
                                     <button
                                         className="btn w-full flex-1 bg-Primary text-white py-2 rounded-md hover:bg-Secondary hover:text-Primary transition"
                                         onClick={() => handleUpdate(app)}
@@ -184,168 +237,127 @@ const MyMarathons = () => {
                                     >
                                         Delete
                                     </button>
-                                </td>
-                            </tr>
+                                </div>
+                            </div>
                         ))}
-                    </tbody>
-                </table>
-            </div>
-
-            <div className="block lg:hidden">
-                {applications.map((app) => (
-                    <div
-                        key={app._id}
-                        className="border border-gray-300 rounded-lg p-4 shadow-md mb-4"
-                    >
-                        <h2 className="text-lg font-semibold mb-2">{app.marathonTitle}</h2>
-                        <p>
-                            <span className="font-medium">Location: </span> {app.location}
-                        </p>
-                        <p>
-                            <span className="font-medium">Start Date: </span> {app.startRegistration}
-                        </p>
-                        <p>
-                            <span className="font-medium">End Date: </span> {app.endRegistration}
-                        </p>
-                        <p>
-                            <span className="font-medium">Run Start: </span> {app.marathonStartDate}
-                        </p>
-                        <p>
-                            <span className="font-medium">Distance: </span> {app.runningDistance}
-                        </p>
-                        <p>
-                            <span className="font-medium">Image: </span> {app.marathonImage}
-                        </p>
-                        <div className="mt-4 flex gap-2">
-                            <button
-                                className="btn w-full flex-1 bg-Primary text-white py-2 rounded-md hover:bg-Secondary hover:text-Primary transition"
-                                onClick={() => handleUpdate(app)}
-                            >
-                                Update
-                            </button>
-                            <button
-                                className="btn w-full flex-1 hover:bg-Secondary hover:text-white"
-                                onClick={() => handleDelete(app._id)}
-                            >
-                                Delete
-                            </button>
-                        </div>
                     </div>
-                ))}
-            </div>
 
-            <dialog id="update_modal" className="modal modal-bottom sm:modal-middle">
-                <div className="modal-box">
-                    <h3 className="font-bold text-2xl text-center font-Heading text-Primary pb-4">Update Registration</h3>
-                    {marathonData && (
-                        <form onSubmit={handleUpdateSubmit} className="font-Body">
-                            <div className="form-control mb-2">
-                                <label className="mb-1">Marathon Title</label>
-                                <input
-                                    type="text"
-                                    name="marathonTitle"
-                                    defaultValue={marathonData.marathonTitle}
-                                    className="w-full border border-Secondary rounded-md px-3 py-2 focus:outline-Secondary cursor-not-allowed"
-                                    readOnly
-                                />
-                            </div>
+                    <dialog id="update_modal" className="modal modal-bottom sm:modal-middle">
+                        <div className="modal-box">
+                            <h3 className="font-bold text-2xl text-center font-Heading text-Primary pb-4">Update Registration</h3>
+                            {marathonData && (
+                                <form onSubmit={handleUpdateSubmit} className="font-Body">
+                                    <div className="form-control mb-2">
+                                        <label className="mb-1">Marathon Title</label>
+                                        <input
+                                            type="text"
+                                            name="marathonTitle"
+                                            defaultValue={marathonData.marathonTitle}
+                                            className="w-full border border-Secondary rounded-md px-3 py-2 focus:outline-Secondary cursor-not-allowed"
+                                            readOnly
+                                        />
+                                    </div>
 
-                            <div className="form-control mb-2">
-                                <label className="mb-1">Location</label>
-                                <input
-                                    type="text"
-                                    name="location"
-                                    defaultValue={marathonData.location}
-                                    onChange={handleInputChange}
-                                    className="w-full border border-Secondary rounded-md px-3 py-2 focus:outline-Secondary"
-                                />
-                            </div>
-                            <div className="form-control mb-2">
-                                <label className="mb-1">Registration Start:</label>
-                                <DatePicker
-                                    selected={startRegistration}
-                                    onChange={(date) => setStartRegistration(date)}
-                                    className="w-full p-2 border rounded-md text-sm"
-                                    placeholderText="Select start date"
-                                    dateFormat="dd/MM/yyyy"
-                                />
-                            </div>
-                            <div className="form-control mb-2">
-                                <label className="mb-1">Registration End</label>
-                                <DatePicker
-                                    selected={endRegistration}
-                                    onChange={(date) => setEndRegistration(date)}
-                                    className="w-full p-2 border rounded-md text-sm"
-                                    placeholderText="Select end date"
-                                    dateFormat="dd/MM/yyyy"
-                                />
-                            </div>
-                            <div className="form-control mb-2">
-                                <label className="mb-1">Marathon Start</label>
-                                <input
-                                    type="text"
-                                    name="marathonTitle"
-                                    defaultValue={marathonStartDate}
-                                    className="w-full border border-Secondary rounded-md px-3 py-2 focus:outline-Secondary cursor-not-allowed"
-                                    readOnly
-                                />
+                                    <div className="form-control mb-2">
+                                        <label className="mb-1">Location</label>
+                                        <input
+                                            type="text"
+                                            name="location"
+                                            defaultValue={marathonData.location}
+                                            onChange={handleInputChange}
+                                            className="w-full border border-Secondary rounded-md px-3 py-2 focus:outline-Secondary"
+                                        />
+                                    </div>
+                                    <div className="form-control mb-2">
+                                        <label className="mb-1">Registration Start:</label>
+                                        <DatePicker
+                                            selected={startRegistration}
+                                            onChange={(date) => setStartRegistration(date)}
+                                            className="w-full p-2 border rounded-md text-sm"
+                                            placeholderText="Select start date"
+                                            dateFormat="dd/MM/yyyy"
+                                        />
+                                    </div>
+                                    <div className="form-control mb-2">
+                                        <label className="mb-1">Registration End</label>
+                                        <DatePicker
+                                            selected={endRegistration}
+                                            onChange={(date) => setEndRegistration(date)}
+                                            className="w-full p-2 border rounded-md text-sm"
+                                            placeholderText="Select end date"
+                                            dateFormat="dd/MM/yyyy"
+                                        />
+                                    </div>
+                                    <div className="form-control mb-2">
+                                        <label className="mb-1">Marathon Start</label>
+                                        <input
+                                            type="text"
+                                            name="marathonTitle"
+                                            defaultValue={marathonStartDate}
+                                            className="w-full border border-Secondary rounded-md px-3 py-2 focus:outline-Secondary cursor-not-allowed"
+                                            readOnly
+                                        />
 
-                            </div>
-                            <div className="form-control mb-2">
-                                <label className="mb-1">Distance</label>
-                                <select
-                                    name="runningDistance"
-                                    required
-                                    className="w-full p-2 border rounded-md text-sm"
-                                    value={marathonData.runningDistance}
-                                    onChange={handleChange}
-                                >
-                                    <option value="25k">25k</option>
-                                    <option value="10k">10k</option>
-                                    <option value="3k">3k</option>
-                                </select>
-                            </div>
+                                    </div>
+                                    <div className="form-control mb-2">
+                                        <label className="mb-1">Distance</label>
+                                        <select
+                                            name="runningDistance"
+                                            required
+                                            className="w-full p-2 border rounded-md text-sm"
+                                            value={marathonData.runningDistance}
+                                            onChange={handleChange}
+                                        >
+                                            <option value="25k">25k</option>
+                                            <option value="10k">10k</option>
+                                            <option value="3k">3k</option>
+                                        </select>
+                                    </div>
 
-                            <div className="form-control mb-2">
-                                <label className="mb-1">Image</label>
-                                <input
-                                    type="text"
-                                    name="marathonImage"
-                                    defaultValue={marathonData.marathonImage}
-                                    onChange={handleInputChange}
-                                    className="w-full border border-Secondary rounded-md px-3 py-2 focus:outline-Secondary"
-                                />
-                            </div>
-                            <div>
-                                <label className="block text-sm font-body text-Text mb-1">
-                                    Description
-                                </label>
-                                <textarea
-                                    name="description"
-                                    placeholder="Describe your marathon in detail"
-                                    rows="4"
-                                    required
-                                    className="w-full p-2 border rounded-md text-sm"
-                                    defaultValue={marathonData.description}
-                                ></textarea>
-                            </div>
+                                    <div className="form-control mb-2">
+                                        <label className="mb-1">Image</label>
+                                        <input
+                                            type="text"
+                                            name="marathonImage"
+                                            defaultValue={marathonData.marathonImage}
+                                            onChange={handleInputChange}
+                                            className="w-full border border-Secondary rounded-md px-3 py-2 focus:outline-Secondary"
+                                        />
+                                    </div>
+                                    <div>
+                                        <label className="block text-sm font-body text-Text mb-1">
+                                            Description
+                                        </label>
+                                        <textarea
+                                            name="description"
+                                            placeholder="Describe your marathon in detail"
+                                            rows="4"
+                                            required
+                                            className="w-full p-2 border rounded-md text-sm"
+                                            defaultValue={marathonData.description}
+                                        ></textarea>
+                                    </div>
 
-                            <div className="modal-action">
-                                <button type="submit" className="btn bg-Primary text-white py-2 rounded-md hover:bg-Secondary hover:text-Primary transition">
-                                    Save
-                                </button>
-                                <button
-                                    type="button"
-                                    className="btn"
-                                    onClick={() => document.getElementById("update_modal").close()}
-                                >
-                                    Cancel
-                                </button>
-                            </div>
-                        </form>
-                    )}
-                </div>
-            </dialog>
+                                    <div className="modal-action">
+                                        <button type="submit" className="btn bg-Primary text-white py-2 rounded-md hover:bg-Secondary hover:text-Primary transition">
+                                            Save
+                                        </button>
+                                        <button
+                                            type="button"
+                                            className="btn"
+                                            onClick={() => document.getElementById("update_modal").close()}
+                                        >
+                                            Cancel
+                                        </button>
+                                    </div>
+                                </form>
+                            )}
+                        </div>
+                    </dialog>
+                </>
+            )}
+
+
         </div>
     );
 };
