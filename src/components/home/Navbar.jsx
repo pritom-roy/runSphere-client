@@ -21,7 +21,7 @@ const Navbar = () => {
         <div className="bg-Secondary text-white font-Body">
             <div className="navbar justify-between w-11/12 md:w-10/12 mx-auto">
                 <div className="navbar-start w-auto">
-                    <div className="dropdown">
+                    <div className="dropdown z-10">
                         <div tabIndex={0} role="button" className="lg:hidden pr-2">
                             <svg
                                 xmlns="http://www.w3.org/2000/svg"

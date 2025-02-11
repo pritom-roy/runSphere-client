@@ -23,6 +23,7 @@ export default {
         'run1': "url('/run9.jpg')",
         'run2': "url('/run2.jpg')",
         'run3': "url('/run4.jpg')",
+        'auth': "url('/bg.jpg')",
       },
     },
   },
