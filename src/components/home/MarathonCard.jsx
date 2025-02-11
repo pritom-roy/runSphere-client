@@ -21,9 +21,9 @@ const MarathonCard = () => {
                 {marathons.map((marathon) => (
                     <div
                         key={marathon._id}
-                        className="bg-white shadow-md rounded-lg p-4 border border-gray-200 hover:shadow-lg transition duration-200"
+                        className="bg-white shadow-md rounded-xl p-4 border border-gray-200 hover:shadow-lg transition duration-200"
                     >
-                        <img src={marathon.marathonImage} alt="" />
+                        <img className='rounded-lg' src={marathon.marathonImage} alt="" />
                         <h2 className="text-xl font-bold mb-2">{marathon.marathonTitle}</h2>
                         <p className="text-gray-700 mb-1">Location: {marathon.location}</p>
                         <p className="text-gray-700 mb-1">
