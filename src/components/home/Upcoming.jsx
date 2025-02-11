@@ -60,7 +60,7 @@ const UpcomingMarathons = () => {
                             <img src={event.image} alt={event.title} className="w-full h-48 object-cover" />
                             <div className="p-4">
                                 <h3 className="text-lg font-bold text-gray-800">{event.title}</h3>
-                                <p className="text-sm text-gray-600">Date: {event.date}</p>
+                                <p className="text-sm text-gray-600 font-semibold">{event.date}</p>
                                 <p className="text-sm text-gray-600">Location: {event.location}</p>
                                 <p className="mt-2 text-gray-700">{event.description}</p>
                             </div>
