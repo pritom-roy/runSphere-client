@@ -12,6 +12,8 @@ import MyMarathons from "../pages/MyMarathons";
 import MyApplyList from "../pages/MyApplyList";
 import MarathonDetails from "../pages/MarathonDetails";
 import MarathonRegistration from "../pages/MarathonRegistration";
+import ContactUs from "../pages/ContactUs";
+import FAQ from "../pages/Faq";
 
 const router = createBrowserRouter([
     {
@@ -33,6 +35,14 @@ const router = createBrowserRouter([
             {
                 path: "register",
                 element: <Register />
+            },
+            {
+                path: "faq",
+                element: <FAQ />
+            },
+            {
+                path: "contact",
+                element: <ContactUs />
             },
             {
                 path: "marathons",

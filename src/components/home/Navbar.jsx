@@ -42,9 +42,21 @@ const Navbar = () => {
                             <Link
                                 to="marathons"
                                 className="w-full hover:border border-Secondary text-Secondary rounded-md p-1">Marathon</Link>
+                            <Link
+                                to="marathons"
+                                className="w-full hover:border border-Secondary text-Secondary rounded-md p-1">Contact Us</Link>
                             {user?.email ? <Link
                                 to="dashboard"
                                 className="w-full hover:border border-Secondary text-Secondary rounded-md p-1">Dashboard</Link> : <></>}
+                            {user?.email ? <Link
+                                to="dashboard/addmarathon"
+                                className="w-full hover:border border-Secondary text-Secondary rounded-md p-1">Add Marathon</Link> : <></>}
+                            {user?.email ? <Link
+                                to="dashboard/mymarathon"
+                                className="w-full hover:border border-Secondary text-Secondary rounded-md p-1">My Marathon</Link> : <></>}
+                            {user?.email ? <Link
+                                to="dashboard/myapply"
+                                className="w-full hover:border border-Secondary text-Secondary rounded-md p-1">My Apply List</Link> : <></>}
                         </ul>
                     </div>
                     <Link to="/" className="text-xl group">
@@ -56,11 +68,14 @@ const Navbar = () => {
 
                 <div className="navbar-end w-auto md:gap-10">
                     <ul className="menu menu-horizontal px-1 hidden md:flex">
-                        <Link to="marathons" className="hover:text-Primary">MARATHON</Link>
-                        {
-                            user?.email ? <Link to="dashboard" className="hover:text-Primary pl-4">DASHBOARD</Link> : <></>
-                        }
+                        <Link to="/marathons" className="hover:text-Primary">MARATHON</Link>
+                        {user?.email && <Link to="/contact" className="hover:text-Primary pl-4 uppercase">CONTACT US</Link>}
+                        {user?.email && <Link to="/dashboard" className="hover:text-Primary pl-4 uppercase">DASHBOARD</Link>}
+                        {user?.email && <Link to="/dashboard/addmarathon" className="hover:text-Primary pl-4 uppercase">Add Marathon</Link>}
+                        {user?.email && <Link to="/dashboard/mymarathon" className="hover:text-Primary pl-4 uppercase">My Marathon</Link>}
+                        {user?.email && <Link to="/dashboard/myapply" className="hover:text-Primary pl-4 uppercase">My Apply List</Link>}
                     </ul>
+
                     {
                         user?.email ?
                             <div className="relative group flex gap-2 items-center justify-center">

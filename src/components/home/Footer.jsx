@@ -69,10 +69,10 @@ const Footer = () => {
                         <h3 className="font-Heading text-white text-xl font-bold mb-3">CONTACTS</h3>
                         <ul className="text-sm text-TextColor space-y-2 text-Body">
                             <li>
-                                Location: 123, New Lenox Chicago, IL 60606
+                                Location: 123, New Lenox Chicago
                             </li>
                             <li>
-                                Phone: <a href="tel:123-456-7890" className="hover:text-white text-Primary">123-456-7890</a>
+                                Phone: <a href="tel:123-456-7890" className="hover:text-white text-Primary">+8801732790640</a>
                             </li>
                             <li>
                                 Email: <a href="mailto:info@yoursite.com" className="hover:text-white text-Primary">info@runsphere.com</a>

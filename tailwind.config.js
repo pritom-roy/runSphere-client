@@ -24,6 +24,7 @@ export default {
         'run2': "url('/run2.jpg')",
         'run3': "url('/run4.jpg')",
         'auth': "url('/bg.jpg')",
+        'faq': "url('/faq.jpg')",
       },
     },
   },
