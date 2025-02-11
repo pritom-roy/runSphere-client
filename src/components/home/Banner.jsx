@@ -40,7 +40,7 @@ const Banner = () => {
                 modules={[Autoplay, Pagination]}
                 autoplay={{ delay: 3000, disableOnInteraction: false }}
                 loop
-                pagination={{ clickable: true }}
+                pagination={{ clickable: true, bulletClass: "swiper-pagination-bullet", bulletActiveClass: "swiper-pagination-bullet-active" }}
                 className="w-full h-[80vh]"
                 onSwiper={(swiper) => (swiperRef.current = swiper)}
             >
@@ -63,6 +63,20 @@ const Banner = () => {
                     </SwiperSlide>
                 ))}
             </Swiper>
+            <style>
+                {`
+                    .swiper-pagination-bullet {
+                        background: white;
+                        opacity: 1;
+                        width: 7px;
+                        height: 7px;
+                    }
+                    .swiper-pagination-bullet-active {
+                        background: #0DB496;
+                        opacity: 1;
+                    }
+                `}
+            </style>
         </div>
     );
 };
